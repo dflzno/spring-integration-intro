@@ -13,6 +13,8 @@ public class App {
 
 		greeterService.greet("Spring Integration!");
 
+		greeterService.greet2("Spring Integration (with response)!");
+
 		applicationContext.close();
 	}
 }
