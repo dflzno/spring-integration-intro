@@ -1,2 +1,5 @@
-Build: mvn clean install
-Run: java -jar target/hello-spring-integration.jar
+### Build: 
+mvn clean install
+
+### Run: 
+java -jar target/hello-spring-integration.jar
