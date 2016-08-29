@@ -45,8 +45,15 @@
 	<!-- Create a channel for a listener that will consume messages -->
 	<int:channel id="listenerChannel" />
 
-	<int-jms:message-driven-channel-adapter id="messageDrivenAdapter" channel="listenerChannel" destination-name="topic.myTopic" pub-sub-domain="true" />
+	<int-jms:message-driven-channel-adapter id="messageDrivenAdapter" channel="getPayloadChannel" destination-name="topic.myTopic" pub-sub-domain="true" />
 
 	<int:service-activator input-channel="listenerChannel" ref="messageListenerImpl" method="processMessage" />
+	
+	<!-- For lightweight payloads -->
+	
+	<int:channel id="getPayloadChannel" />
+
+	<!-- Forwards the output of getPayload() method on retrievePayloadServiceImpl to the listenerChannel -->
+    <int:service-activator input-channel="getPayloadChannel" ref="retrievePayloadServiceImpl" method="getPayload" output-channel="listenerChannel"/>
 
 </beans>	
